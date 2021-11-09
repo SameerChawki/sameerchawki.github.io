@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+     <title>Sameer's Website</title>
+     <style>
+         body {
+         background: rgb(255, 255, 255);
+         color: rgb(45, 45, 45);
+         padding: 10px;
+         font-family: arial;
+        }
+         [id="all-contents"] {
+         max-width: 875px;
+         margin: auto;
+        }
+
+         /* navigation menu */
+         nav {
+         background: rgb(112, 22, 0);
+         margin: 0 auto;
+         margin-bottom: 20px;
+         display: flex;
+         padding: 10px;
+        }
+         h1 {
+         display: flex;
+         align-items: center;
+         color: white;
+         flex: 1;
+         margin: 0;
+        }
+         #nav-ul {
+         list-style-image: none;
+        }
+         .nav-li {
+         display: inline-block;
+         padding: 0 10px;
+        }
+         a {
+         text-decoration: none;
+         color: #fff;
+        }
+
+            /* main container area beneath menu */
+         main {
+         background: rgb(117, 3, 3);
+         display: flex;
+        }
+         .sidebar {
+         margin-right: 25px;
+         padding: 10px;
+         }
+         .sidebar-img {
+         width: 200px;
+        }
+         .content {
+         flex: 1;
+         padding: 15px;
+        }
+         #interests {
+         border: 4px silver ridge;
+         padding: 8px;
+        }
+         #occupation {
+          color: white;   
+         }
+         .interest-list {
+         color: white;
+
+         }
+         h2, h3 {
+         color: white;
+         margin: 0px;
+        }
+
+         img {
+         width: 100%;
+         height: auto;
+        }
+     </style>
+
+        
+</head>
+    
+<body>
+     <div id="all-contents">
+            <nav>
+             <h1>Sameer's Rocking Webpage</h1>
+             <ul id="nav-ul">
+                 <li class="nav-li">
+                  <a href="index.html"> Home </a>
+                 </li>
+
+                 <li class="nav-li">
+                  <a href="portfolio.html"> Portfolio </a>
+                 </li>
+             </ul>
+    
+            </nav>
+
+        <main>
+         <!-- Sidebar section -->
+                 <div class="sidebar">
+                    <img class="sidebar-img"src="portrait.jpg">
+
+                 </div>
+
+         <!-- Content section -->
+                <div class="content">
+                    <h2>Sameer Chawki</h2>
+                    <p id="occupation">Student at Northshore High</p>
+                    <!-- interests section-->
+                    <div id="interests">
+                        <h3>Interests</h3>  
+                         <ul class="interest-list">
+                             <li>Gaming</li>
+                             <li>Hanging Out With Friends</li>
+                             <li>Doing Anything But School Work</li>
+                         </ul>
+                    </div>
+                </div>
+        </main>
+    
+     </div>
+</body>
+
+</html>
