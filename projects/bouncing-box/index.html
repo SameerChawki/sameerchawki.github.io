@@ -68,8 +68,8 @@
 			var posY = 10;
 			var speedY = 5;
 			var boardHeight = jQuery(window).height();
-			var randNum = Math.random() * 100;
-
+			var colorStr = "rgb(50, 25, 250)";
+			
 			
 						
 			/* 
@@ -90,25 +90,46 @@
         		speed=-speed;
         
 			}
+			if(posY < 0){
+        		speedY=-speedY;
+        
+			}
+    		if(posY > boardHeight){
+        		speedY=-speedY;
+        
+			}
 			
-		}
+			}
+			function getRandomColor(){
+				var r = Math.random() * 255;
+				var g = Math.random() * 255;
+				var b = Math.random() * 255;
+				colorStr = 'rgb(' + r +', ' + g + ', ' + b + ')';
+			}
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
 			the left side of the screen.
 			*/
 			function handleBoxClick() {
-    			posX = randNum;
-				posY = randNum;
+				var randNumX = Math.random() * (boardWidth);
+				var randNumY = Math.random() * (boardHeight);
+    			posX = randNumX;
+				posY = randNumY;
 				points = points + 1;
 				changeBoxText(points)
+			if(points % 3 == 0){
+				
 				if(speed > 0){
 					speed = speed + 3;
 				}
 				else{
-					speed = speed-3
+					speed = speed-3;
 				}
-				console.log(posX,posY);
+			}
+				getRandomColor();
+				box.css('background-color', colorStr);
+				
 			}
 		})();
 	</script>
