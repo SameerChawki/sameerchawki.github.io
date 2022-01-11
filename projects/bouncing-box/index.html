@@ -18,6 +18,8 @@
 		}
 		.board{
 			height: 100vh;
+			background-color: grey;
+			/*background-image: center url('projects/bouncing-box/images/random-pixels-wallpaper-big.jpg');*/
 		}
 	</style>
 	<!-- 	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script> -->
@@ -70,11 +72,18 @@
 			var speedY = 5;
 			var boardHeight = jQuery(window).height();
 			var colorStr = "rgb(50, 25, 250)";
+			var brdStr="rgb(50, 25, 250)";
 			function getRandomColor(){
 				var r = Math.random() * 255;
 				var g = Math.random() * 255;
 				var b = Math.random() * 255;
 				colorStr = 'rgb(' + r +', ' + g + ', ' + b + ')';
+			}
+			function randomBoardColor(){
+				var a = Math.random() * 255;
+				var c = Math.random() * 255;
+				var d = Math.random() * 255;
+				brdStr = 'rgb(' + a +', ' + c + ', ' + d + ')';
 			}
 			var missClicks = 0;
 			
@@ -106,7 +115,23 @@
 			}
 			
 			}
-			
+			/*this function will handle miss clicks*/
+			function endGame() {
+				missClicks = missClicks + 1;
+
+   			 	clearInterval(interval);
+				
+				}	
+			function missClick(){
+				if (typeof(interval) !== "undefined"){
+					missClicks=missClicks+1;
+				}
+				if(missClicks>= 10 ){
+					endGame();
+					alert("Game Over: Get Good Scrub");
+				}
+				
+			}
 			
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
@@ -123,41 +148,38 @@
 				points = points + 1;
 				changeBoxText(points)
 			
-			if(points % 3 == 0){
-				getRandomColor();
-				box.css('background-color', colorStr);
+				if(points % 3 == 0){
+					getRandomColor();
+					randomBoardColor();
+					if(brdStr==colorStr){
+						randomBoardColor();
+					}
+					box.css('background-color', colorStr);
+					board.css('background-color', brdStr);
 				
-				if(speed > 0){
-					speed = speed + 3;
+					if(speed > 0){
+						speed = speed + 3;
+					}
+					else{
+						speed = speed-3;
+					}
+					if(speedY > 0){
+						speedY = speedY + 1.5;
+					}
+					else{
+						speedY = speedY - 1.5;
+					}	
 				}
-				else{
-					speed = speed-3;
+			
+				if(randSpeed > 0.5){
+					speed = -speed;
 				}
-				if(speedY > 0){
-					speedY = speedY + 1.5;
+				if(randSpeedY > 0.5){
+					speedY = -speedY;
 				}
-				else{
-					speedY = speedY - 1.5;
-				}	
+				missClicks=-1;
 			}
 			
-			if(randSpeed > 0.5){
-				speed = -speed;
-			}
-			if(randSpeedY > 0.5){
-				speedY = -speedY;
-			}
-				console.log(interval)
-			}
-			/*this function will handle miss clicks*/
-			function missClick(){
-				function endGame() {
-				missClicks = missClicks + 1;
-
-   			 	clearInterval(interval);
-				
-				}	
-			}
 		})();
 	</script>
 </body>
