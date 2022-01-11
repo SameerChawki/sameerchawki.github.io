@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
-	<title>Bouncing Box</title>
+	<title>Bounciest Box</title>
 	<script src="jquery.min.js"></script>
 	<style>
 		.box {
@@ -45,7 +45,8 @@
 			
 			// Every time the box is clicked, call the handleBoxClick Function (see below)
 			box.on('click', handleBoxClick);
-
+			board.on('click',endGame)
+			
 			// moves the Box to a new position on the screen along the X-Axis
 			function moveBoxTo(newPositionX,newPositionY) {
 				box.css("left", newPositionX);
@@ -75,9 +76,7 @@
 				var b = Math.random() * 255;
 				colorStr = 'rgb(' + r +', ' + g + ', ' + b + ')';
 			}
-			function endGame() {
-   			 clearInterval(interval);
-			}
+			var misClicks = 0;
 						
 			/* 
 			This Function will be called 20 times/second. Each time it is called,
@@ -108,6 +107,12 @@
 			
 			}
 			
+			function endGame() {
+				misClicks = misClicks + 1;
+
+   			 	clearInterval(interval);
+				console.log(misClicks)
+			}
 			/* 
 			This Function will be called each time the box is clicked. Each time it is called,
 			it should increase the points total, increase the speed, and move the box to
@@ -116,11 +121,16 @@
 			function handleBoxClick() {
 				var randNumX = Math.random() * (boardWidth);
 				var randNumY = Math.random() * (boardHeight);
+				var randSpeed = Math.random();
+				var randSpeedY = Math.random();
     			posX = randNumX;
 				posY = randNumY;
 				points = points + 1;
 				changeBoxText(points)
+			
 			if(points % 3 == 0){
+				getRandomColor();
+				box.css('background-color', colorStr);
 				
 				if(speed > 0){
 					speed = speed + 3;
@@ -128,10 +138,22 @@
 				else{
 					speed = speed-3;
 				}
+				if(speedY > 0){
+					speedY = speedY + 1.5;
+				}
+				else{
+					speedY = speedY - 1.5;
+				}	
 			}
-				getRandomColor();
-				box.css('background-color', colorStr);
-				
+			
+			if(randSpeed > 0.5){
+				speed = -speed;
+			}
+			if(randSpeedY > 0.5){
+				speedY = -speedY;
+			}
+
+
 			}
 		})();
 	</script>
