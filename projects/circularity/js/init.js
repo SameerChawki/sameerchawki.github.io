@@ -22,10 +22,7 @@ var init = function (window) {
         // TODO 1 : Declare and initialize our variables
         var circle;
         var circles = [];
-        var rightEdge = circle.x + circle.radius;
-        var leftEdge = circle.x - circle.radius;
-        var bottomEdge = circle.y + circle.radius;
-        var topEdge = circle.y - circle.radius;
+
 
         // TODO 2 : Create a function that draws a circle 
         function drawCircle(){
@@ -69,24 +66,25 @@ var init = function (window) {
         it to the opposite side of the screen.
         */
         game.checkCirclePosition = function(circle) {
-
+            var rightEdge = circle.x + circle.radius;
+            var leftEdge = circle.x - circle.radius;
+            var bottomEdge = circle.y + circle.radius;
+            var topEdge = circle.y - circle.radius;
             // if the circle has gone past the RIGHT side of the screen then place it on the LEFT
             if ( leftEdge > canvas.width ) {
-                rightEdge = 0;
+                circle.x = 0;
             }
             if ( rightEdge < 0 ) {
-                leftEdge = canvas.width;
+                circle.x = canvas.width;
             }
             if ( topEdge > canvas.height ) {
-                bottomEdge = 0;
+                circle.y = 0;
             }
             if ( bottomEdge < 0 ) {
-                topEdge = canvas.height;
+                circle.y = canvas.height;
             }
             // TODO 7 : YOUR CODE STARTS HERE //////////////////////
-            for (var i = 0; i < 100; i++){
-                drawCircle();
-            }
+            
 
 
             // YOUR TODO 7 CODE ENDS HERE //////////////////////////
